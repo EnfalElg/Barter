@@ -14,8 +14,16 @@ const tabs = [
   { href: "/profile", label: "Profilim", icon: UserRound },
 ] as const;
 
+function isAuthRoute(pathname: string): boolean {
+  return pathname === "/login" || pathname.startsWith("/auth");
+}
+
 export function SiteBottomNav() {
   const pathname = usePathname();
+
+  if (isAuthRoute(pathname || "")) {
+    return null;
+  }
 
   return (
     <nav

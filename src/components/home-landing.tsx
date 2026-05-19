@@ -75,11 +75,11 @@ export function HomeLanding() {
           >
             <CardHeader className="gap-4 p-0">
               <CardTitle className="text-lg font-bold leading-snug">
-                Demo hazır
+                Takas yeniden tasarlandı
               </CardTitle>
               <CardDescription className="text-base leading-relaxed text-muted-foreground">
-                Masonry keşif, yumuşak rozetler ve denk takas alanı — Supabase yoksa mock
-                envanterle çalışır.
+                Fiyatlar gizli kalır; sistem ürünleri değer dengesi, güven skoru ve takas
+                uyumuna göre eşleştirir.
               </CardDescription>
             </CardHeader>
           </Card>

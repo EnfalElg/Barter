@@ -2,21 +2,19 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { LoginForm } from "@/app/login/login-form";
+import { LoginMarketingPanel } from "@/components/login-marketing-panel";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
   title: "Giriş",
-  description: "barter — giriş yap veya kayıt ol",
+  description: "barter — Fiyat yok, denge var. Giriş yap ve takasa başla.",
 };
 
 function LoginFallback() {
   return (
-    <div className="flex w-full max-w-md flex-col items-center gap-6 rounded-[1.75rem] border border-white/90 bg-white p-8 shadow-xl">
-      <Skeleton className="size-14 rounded-2xl" />
-      <Skeleton className="h-8 w-48 rounded-lg" />
-      <Skeleton className="h-4 w-full max-w-xs rounded-lg" />
-      <Skeleton className="h-12 w-full rounded-2xl" />
-      <Skeleton className="h-12 w-full rounded-2xl" />
+    <div className="w-full max-w-md space-y-4">
+      <Skeleton className="h-10 w-full rounded-2xl" />
+      <Skeleton className="h-64 w-full rounded-3xl" />
     </div>
   );
 }
@@ -30,14 +28,16 @@ export default async function LoginPage({
   const defaultNext = sp.next?.startsWith("/") ? sp.next : "/";
 
   return (
-    <div className="relative flex min-h-[calc(100vh-3.5rem)] flex-1 flex-col items-center justify-center px-4 py-12 sm:min-h-[calc(100vh-4rem)]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(255,79,1,0.15),transparent_55%),linear-gradient(180deg,#faf9f7_0%,#fffdfb_50%,#fff5f0_100%)]"
-      />
-      <Suspense fallback={<LoginFallback />}>
-        <LoginForm defaultNext={defaultNext} />
-      </Suspense>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-white">
+      <div className="mx-auto grid min-h-screen max-w-6xl lg:grid-cols-2">
+        <LoginMarketingPanel />
+
+        <div className="flex flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-12">
+          <Suspense fallback={<LoginFallback />}>
+            <LoginForm defaultNext={defaultNext} />
+          </Suspense>
+        </div>
+      </div>
     </div>
   );
 }

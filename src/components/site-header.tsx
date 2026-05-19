@@ -47,6 +47,10 @@ function navLinkClass(active: boolean): string {
   );
 }
 
+function isAuthRoute(pathname: string): boolean {
+  return pathname === "/login" || pathname.startsWith("/auth");
+}
+
 export function SiteHeader({ className }: { className?: string }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -83,6 +87,10 @@ export function SiteHeader({ className }: { className?: string }) {
   };
 
   const initial = user?.email?.trim()?.[0]?.toUpperCase() ?? "?";
+
+  if (isAuthRoute(pathname || "")) {
+    return null;
+  }
 
   return (
     <header
